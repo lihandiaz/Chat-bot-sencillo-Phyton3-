@@ -33,5 +33,3 @@ while True:
     respuesta = responder(user_input)
     print("Bot:", respuesta)
 
-HOLAA
-
