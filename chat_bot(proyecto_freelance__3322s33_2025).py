@@ -8,28 +8,58 @@ Original file is located at
 """
 
 # Chatbot sencillo preguntas basicas
+import datetime
+import random
+
+#variable global para recordar el nombre de usuario
+nombre_usuario = None
 
 def responder(pregunta):
-    pregunta = pregunta.lower()  # Pasar a minúsculas para comparar
-    if "hola" in pregunta:
-        return "¡Holiis! ¿Cómo puedo ayudarte?"
-    elif "buenas" in pregunta or "chao" in pregunta:
-        return  "¡Hasta luuuego!"
+    global nombre_usuario
+    pregunta = pregunta.lower().strip()
+    
+#saludos
+    if any(x in pregunta for x in ["hola", "buenas tardes", "buenas", "hi"]):
+        return "¿Cómo puedo ayudarte?"
+#despedidas
+    elif any (x in pregunta for x in ["chao", "adios", "Gracias", "hasta luego", "ok"]):
+        return  "¡Hasta luego, que tengas buen día!"
     elif "adiós" in pregunta or "chao" in pregunta:
-        return "¡Hasta luuuego! Que tengas un buen día."
+        return "¡Hasta luego! Que tengas un buen día."
+#nombre del chat bot
     elif "nombre" in pregunta:
-        return "Soy un chatbot de ejemplo. ¡Encantado!"
+        return "!Soy Alan.... gusto en conocerte!"
     elif "ayuda" in pregunta:
+#pregunta
         return "Claro, ¿en qué tema necesitas ayuda?"
-    else:
+    elif "edad" in pregunta:
+        edad = random.randint(1, 5)  # Puedes cambiarla si quieres que sea fija
+        return f"Tengo {edad} años... ¡en años de programa!"
+    elif "hora" in pregunta or "tiempo" in pregunta or "qué hora" in pregunta:
+        hora_actual = datetime.datetime.now().strftime("%H:%M:%S")
+        return f"La hora actual es {hora_actual}."
+    elif any (x in pregunta for x in ["quien te creo", "diseñador", "Papa", "padre", "creo", "porque estas aqui", "tu dios"]):
+        return "Soy un proyecto de practicas... puedes creerlo :o"  
+ #me llamo
+    elif "me llamo" in pregunta:
+        nombre_usuario = pregunta.replace("me llamo", "").strip()
+        return f"Encantado, {nombre_usuario}. ¡Qué gusto conocerte!"
+
+    elif "como me llamo" in pregunta:
+        if nombre_usuario:
+            return f"Te llamas {nombre_usuario}, ¿cierto?"
+        else:
+            return "Aún no me has dicho tu nombre, bro."
         return "Lo siento, no entiendo tu pregunta."
+        
+
 
 # Loop de conversación
 while True:
-    user_input = input("Tú: ")
+    user_input = input("usuario: ")
     if user_input.lower() in ["salir", "exit", "quit"]:
-        print("Bot: ¡Adiós!")
+        print("Alan: ¡Adiós!")
         break
     respuesta = responder(user_input)
-    print("Bot:", respuesta)
+    print("Alan:", respuesta)
 
