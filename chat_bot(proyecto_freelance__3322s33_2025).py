@@ -11,22 +11,22 @@ Original file is located at
 
 def responder(pregunta):
     pregunta = pregunta.lower()  # Pasar a minúsculas para comparar
-    if "hola" in pregunta:
-        return "¡Holiis! ¿Cómo puedo ayudarte?"
-    elif "buenas" in pregunta or "chao" in pregunta:
-        return  "¡Hasta luuuego!"
+    if any(x in pregunta for x in ("hola", "buenos dias", "buenas tardes", "hol", "ola","hla", "hi", "Hello", "klk")): 
+        return "¡Hola! ¿Cómo puedo ayudarte?"
+    elif "gracias" in pregunta or "chao" in pregunta:
+        return  "¡Hasta luego!"
     elif "adiós" in pregunta or "chao" in pregunta:
         return "¡Hasta luuuego! Que tengas un buen día."
     elif "nombre" in pregunta:
         return "Soy un chatbot de ejemplo. ¡Encantado!"
     elif "ayuda" in pregunta:
-        return "Claro, ¿en qué tema necesitas ayuda?"
+        return "Claro, ¿en qué tema necesitas ayuda?, puedes ingresar al siguiente link https://search.brave.com/images?q=programacion+estructurada"
     else:
         return "Lo siento, no entiendo tu pregunta."
 
 # Loop de conversación
 while True:
-    user_input = input("Tú: ")
+    user_input = input("Usuario: ")
     if user_input.lower() in ["salir", "exit", "quit"]:
         print("Bot: ¡Adiós!")
         break
